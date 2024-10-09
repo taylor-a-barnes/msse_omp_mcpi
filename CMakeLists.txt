@@ -13,6 +13,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 add_executable(ompmcpi src/main.cpp)
 
 # Find MPI
-find_package(MPI REQUIRED)
+find_package(OpenMP REQUIRED)
 target_link_libraries(ompmcpi PUBLIC OpenMP::OpenMP_CXX)
 
