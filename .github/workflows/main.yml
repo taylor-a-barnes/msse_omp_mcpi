@@ -1,0 +1,45 @@
+on:
+  push:
+    branches:
+      '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test Monte-Carlo Pi Evaluation
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build the code
+        run: |
+          sudo apt-get install -y cmake g++
+
+      - name: Build the code
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build .
+
+      - name: Run the code on a single thread
+        run: |
+          cd build
+          export OMP_NUM_THREADS=1
+          ./ompmcpi
+
+      - name: Run the code on three threads
+        run: |
+          cd build
+          export OMP_NUM_THREADS=3
+          ./ompmcpi
+
+      - name: Run the code on four threads
+        run: |
+          cd build
+          export OMP_NUM_THREADS=4
+          ./ompmcpi
+
