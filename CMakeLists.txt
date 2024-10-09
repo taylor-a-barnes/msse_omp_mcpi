@@ -14,5 +14,5 @@ add_executable(ompmcpi src/main.cpp)
 
 # Find MPI
 find_package(MPI REQUIRED)
-target_link_libraries(ompmcpi PUBLIC MPI::MPI_CXX)
+target_link_libraries(ompmcpi PUBLIC OpenMP::OpenMP_CXX)
 
